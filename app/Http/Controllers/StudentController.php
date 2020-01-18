@@ -68,7 +68,9 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['title'] = 'Edit';
+        $data['student'] = Student::find($id);
+        return view('student_edit', $data);
     }
 
     /**
@@ -80,7 +82,15 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Student::find($id)->update([
+            'nis'   => $request->input('nis'),
+            'nama'  => $request->input('nama'),
+            'kelas'  => $request->input('kelas'),
+            'alamat'  => $request->input('alamat'),
+            'no_telepon'  => $request->input('no_telepon'),
+        ]);
+
+        return redirect('/');
     }
 
     /**

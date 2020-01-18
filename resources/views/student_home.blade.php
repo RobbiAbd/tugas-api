@@ -10,7 +10,7 @@
 <table class="table">
 	<thead class="thead-dark">
 		<tr>
-			<th scope="col">#</th>
+			<th scope="col">#<i class="fas fa-school"></i></th>
 			<th scope="col">Nis</th>
 			<th scope="col">Nama</th>
 			<th scope="col">Kelas</th>
@@ -35,7 +35,7 @@
 				{{-- form delete student --}}
 				<form action="{{ url('student/'.$s->id) }}" method="POST">
 				{{-- edit button --}}
-				<a href="" class="btn btn-info text-white">Edit</a>
+				<a href="{{ url('student/'.$s->id.'/edit') }}" class="btn btn-info text-white">Edit</a>
 				{{-- end edit button --}}
 					@csrf
 					@method('DELETE')
