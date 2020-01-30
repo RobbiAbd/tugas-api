@@ -16,6 +16,7 @@ class StudentController extends Controller
     {
         $data['title'] = 'Home';
         $data['students'] = Student::all();
+        
         return view('student_home', $data);
     }
 
@@ -38,12 +39,20 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        Student::insert([
-            'nis'   => $request->input('nis'),
-            'nama'  => $request->input('nama'),
-            'kelas'  => $request->input('kelas'),
-            'alamat'  => $request->input('alamat'),
-            'no_telepon'  => $request->input('no_telepon'),
+        $this->validate($request, [
+            'nis'           => 'required|unique:students',
+            'nama'          => 'required',
+            'kelas'         => 'required',
+            'alamat'        => 'required',
+            'no_telepon'    => 'required',
+        ]);
+
+        $student = Student::insert([
+            'nis'           => $request->get('nis'),
+            'nama'          => $request->get('nama'),
+            'kelas'         => $request->get('kelas'),
+            'alamat'        => $request->get('alamat'),
+            'no_telepon'    => $request->get('no_telepon'),
         ]);
 
         return redirect('/');
@@ -82,12 +91,20 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'nis'           => 'required|unique:students',
+            'nama'          => 'required',
+            'kelas'         => 'required',
+            'alamat'        => 'required',
+            'no_telepon'    => 'required',
+        ]);
+
         Student::find($id)->update([
-            'nis'   => $request->input('nis'),
-            'nama'  => $request->input('nama'),
-            'kelas'  => $request->input('kelas'),
-            'alamat'  => $request->input('alamat'),
-            'no_telepon'  => $request->input('no_telepon'),
+            'nis'   => $request->get('nis'),
+            'nama'  => $request->get('nama'),
+            'kelas'  => $request->get('kelas'),
+            'alamat'  => $request->get('alamat'),
+            'no_telepon'  => $request->get('no_telepon'),
         ]);
 
         return redirect('/');
@@ -101,7 +118,8 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
-        Student::find($id)->delete($id);
+        $student = Student::find($id)->delete($id);
+
         return redirect('/');
     }
 }

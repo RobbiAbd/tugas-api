@@ -29,7 +29,7 @@
 			<td>{{ $s->nis }}</td>
 			<td>{{ $s->nama }}</td>
 			<td>{{ $s->kelas }}</td>
-			<td>{{ $s->alamat }}</td>
+			<td class="text-justify">{{ $s->alamat }}</td>
 			<td>{{ $s->no_telepon }}</td>
 			<td>
 				{{-- form delete student --}}

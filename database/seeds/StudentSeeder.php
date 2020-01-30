@@ -27,5 +27,13 @@ class StudentSeeder extends Seeder
         	'alamat'	=> 'Ds.cikijing',
         	'no_telepon'	=> '085294441889'
         ]);
+
+        Student::insert([
+            'nis'   => '12347',
+            'nama'  => 'Rohman',
+            'kelas' => 'XII RPL 1',
+            'alamat'    => 'Ds.talaga',
+            'no_telepon'    => '085294441885'
+        ]);
     }
 }

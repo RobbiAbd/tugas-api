@@ -6,6 +6,16 @@
 {{-- button add new student --}}
 <a href="{{ url('student') }}" class="btn btn-success mb-2">back to index</a>
 {{-- end button add new student --}}
+{{-- menampilkan error validasi --}}
+@if (count($errors) > 0)
+<div class="alert alert-danger">
+	<ul>
+		@foreach ($errors->all() as $error)
+		<li>{{ $error }}</li>
+		@endforeach
+	</ul>
+</div>
+@endif
 {{-- form add students --}}
 <form action="{{ url('student') }}" method="POST">
 	<div class="form-group">
