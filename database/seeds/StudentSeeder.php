@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use \App\Student;
+use Faker\Factory as Faker;
 
 class StudentSeeder extends Seeder
 {
@@ -12,28 +13,19 @@ class StudentSeeder extends Seeder
      */
     public function run()
     {
-        Student::insert([
-        	'nis'	=> '12345',
-        	'nama'	=> 'Robbi',
-        	'kelas'	=> 'XII RPL 2',
-        	'alamat'	=> 'Ds.sindang',
-        	'no_telepon'	=> '085294441998'
+        $faker = Faker::create('id_ID'); // faker indonesia
+        $faker_en = Faker::create('en_US'); // faker amerika
+
+        for($i = 1; $i <= 50; $i++){
+
+            Student::create([
+            'nis'   => $faker->unique()->randomNumber,
+            'nama'  => $faker->name,
+            'kelas' => $faker->numberBetween(10,12)." ".$faker_en->jobTitle." ".$faker->numberBetween(1,4),
+            'alamat'    => $faker->address,
+            'no_telepon'    => $faker->phoneNumber
         ]);
 
-        Student::insert([
-        	'nis'	=> '12346',
-        	'nama'	=> 'Abdul',
-        	'kelas'	=> 'XII RPL 2',
-        	'alamat'	=> 'Ds.cikijing',
-        	'no_telepon'	=> '085294441889'
-        ]);
-
-        Student::insert([
-            'nis'   => '12347',
-            'nama'  => 'Rohman',
-            'kelas' => 'XII RPL 1',
-            'alamat'    => 'Ds.talaga',
-            'no_telepon'    => '085294441885'
-        ]);
+        }
     }
 }
